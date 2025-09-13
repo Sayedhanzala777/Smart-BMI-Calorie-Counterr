@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon BMI & Calorie Counter</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    background: #0f0f1f;
+    font-family: 'Roboto', sans-serif;
+  }
+  .neon-input {
+    border: 2px solid #0ff;
+    background: transparent;
+    color: #0ff;
+    box-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+  }
+  .neon-button {
+    background: #0ff;
+    color: #000;
+    font-weight: bold;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    transition: all 0.3s ease;
+  }
+  .neon-button:hover {
+    box-shadow: 0 0 20px #0ff, 0 0 30px #0ff;
+    transform: scale(1.05);
+  }
+  .result-box {
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+  }
+</style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+<div class="p-8 rounded-lg border border-cyan-500 shadow-lg shadow-cyan-500/50 w-full max-w-md">
+  <h1 class="text-3xl font-bold text-center text-cyan-400 mb-6">BMI & Calorie Counter</h1>
+  <form id="calculatorForm" class="space-y-4">
+    <input class="neon-input p-2 rounded w-full" type="number" id="age" placeholder="Age (years)" required>
+    <input class="neon-input p-2 rounded w-full" type="number" id="weight" placeholder="Weight (kg)" required>
+    <input class="neon-input p-2 rounded w-full" type="number" id="height" placeholder="Height (cm)" required>
+
+    <select class="neon-input p-2 rounded w-full" id="activity" required>
+      <option value="1.2">Sedentary (little or no exercise)</option>
+      <option value="1.375">Lightly active</option>
+      <option value="1.55">Moderately active</option>
+      <option value="1.725">Very active</option>
+      <option value="1.9">Super active</option>
+    </select>
+
+    <select class="neon-input p-2 rounded w-full" id="goal" required>
+      <option value="maintain">Maintain weight</option>
+      <option value="lose">Lose weight</option>
+      <option value="gain">Gain weight</option>
+    </select>
+
+    <button class="neon-button p-2 w-full rounded" type="submit">Calculate</button>
+  </form>
+
+  <div id="result" class="result-box mt-6 text-center text-lg font-semibold"></div>
+</div>
+
+<script>
+document.getElementById('calculatorForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const age = parseInt(document.getElementById('age').value);
+  const weight = parseInt(document.getElementById('weight').value);
+  const height = parseInt(document.getElementById('height').value);
+  const activity = parseFloat(document.getElementById('activity').value);
+  const goal = document.getElementById('goal').value;
+
+  // Mifflin-St Jeor Equation for men (can adjust for gender)
+  const bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  let tdee = bmr * activity;
+
+  let calorieIntake;
+  if(goal === 'maintain') calorieIntake = tdee;
+  else if(goal === 'lose') calorieIntake = tdee - 500;
+  else if(goal === 'gain') calorieIntake = tdee + 500;
+
+  const bmi = (weight / ((height/100)**2)).toFixed(1);
+  let bmiStatus = '';
+  if(bmi < 18.5) bmiStatus = 'Underweight';
+  else if(bmi < 24.9) bmiStatus = 'Normal';
+  else if(bmi < 29.9) bmiStatus = 'Overweight';
+  else bmiStatus = 'Obese';
+
+  document.getElementById('result').innerHTML = `
+    BMI: <strong>${bmi} (${bmiStatus})</strong><br>
+    Daily Calorie Needs: <strong>${Math.round(calorieIntake)} kcal</strong>
+  `;
+});
+</script>
+
+</body>
+</html>

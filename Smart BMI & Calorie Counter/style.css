@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    color: #fff;
+    text-align: center;
+    padding: 25px;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #ff00ff;
+}
+
+.container {
+    max-width: 550px;
+    margin: 30px auto;
+    background: rgba(0,0,0,0.8);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px #00ffff, 0 0 50px #ff00ff;
+}
+
+h2 {
+    color: #00ffff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1em;
+    background: #111;
+    color: #0ff;
+    box-shadow: 0 0 10px #0ff inset;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 20px #00ffff;
+}
+
+button {
+    background: linear-gradient(45deg, #ff00ff, #ff66ff);
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff66ff;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #ff66ff, #ff00ff);
+    box-shadow: 0 0 25px #ff66ff, 0 0 50px #ff00ff;
+    transform: scale(1.05);
+}
+
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    text-shadow: 0 0 5px #fff;
+    transition: all 0.3s ease;
+}
+
+.underweight { background-color: #1a1aff; color: #fff; }
+.normal { background-color: #00ff00; color: #000; }
+.overweight { background-color: #ffff00; color: #000; }
+.obese { background-color: #ff3300; color: #fff; }
+
+.deficit { background-color: #00ff00; color: #000; }
+.surplus { background-color: #ff3300; color: #fff; }
+
